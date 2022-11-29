@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:09:11 by minjungk          #+#    #+#              #
-#    Updated: 2022/11/23 16:52:37 by minjungk         ###   ########.fr        #
+#    Updated: 2022/11/30 10:38:00 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,14 @@ clean fclean:
 .PHONY: all clean fclean re bonus fix
 
 # **************************************************************************** #
-LIBMLX		=	minilibx-linux/libmlx.a
-LIBMLX_DIR	=	$(dir $(LIBMLX))
-$(LIBMLX):
+LIBMLX_DIR	=	minilibx
+
+$(LIBMLX_DIR):
+	@if [ $(shell uname) = "Darwin" ]; then \
+		ln -sf $(LIBMLX_DIR)-macos $(LIBMLX_DIR); \
+	else \
+		ln -sf $(LIBMLX_DIR)-linux $(LIBMLX_DIR); \
+	fi
 
 libmlx_fix:
 	sed -i "/env/d" $(LIBMLX_DIR)configure
@@ -44,12 +49,13 @@ libmlx_fix:
 	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-pointer-sign" $(LIBMLX_DIR)test/Makefile.mk
 	sed -i'' -r -e "/^CFLAGS=/a\CFLAGS+= -Wno-implicit-function-declaration" $(LIBMLX_DIR)test/Makefile.mk
 
-libmlx_all:
+libmlx_all: $(LIBMLX_DIR)
 	$(MAKE) -C $(LIBMLX_DIR)
 
-libmlx_clean:
+libmlx_clean: $(LIBMLX_DIR)
 	$(MAKE) -C $(LIBMLX_DIR) clean
+	$(RM) $(LIBMLX_DIR)
 
-.PHONY: libmlx_fix libmlx_all libmlx_clean
+.PHONY: $(LIBMLX_DIR) libmlx_fix libmlx_all libmlx_clean
 
 # **************************************************************************** #
