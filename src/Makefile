@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2022/11/30 12:32:39 by minjungk         ###   ########.fr        #
+#    Updated: 2022/12/01 20:42:34 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,3 +53,7 @@ fclean: clean
 
 re: clean
 	$(MAKE) all
+
+exe: $(FDF)
+	-export DYLD_LIBRARY_PATH=../external/minilibx; \
+	./$(FDF) $(ARGS)
