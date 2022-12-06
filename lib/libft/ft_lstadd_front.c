@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 01:24:07 by minjungk          #+#    #+#             */
-/*   Updated: 2022/07/10 02:13:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/05 23:13:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst == 0)
+	if (lst == NULL || new == NULL)
 		return ;
-	if (*lst)
-		new->next = *lst;
+	new->next = *lst;
 	*lst = new;
 }

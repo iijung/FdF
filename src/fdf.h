@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 21:48:22 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/05 23:02:18 by minjungk         ###   ########.fr       */
+/*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
+/*   Updated: 2022/12/07 04:55:11 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FDF_H
+# define FDF_H
+# include "map.h"
 
-char	*ft_strchr(const char *s, int c)
+# define WINDOW_X	1600
+# define WINDOW_Y	900
+
+struct s_fdf
 {
-	while (*s != (char)c)
-	{
-		if (*s == '\0')
-			return (NULL);
-		++s;
-	}
-	return ((char *)s);
-}
+	void			*mlx;
+	void			*win;
+	void			*img;
+	struct s_map	*map;
+};
+#endif

@@ -6,15 +6,18 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 20:08:26 by minjungk          #+#    #+#             */
-/*   Updated: 2022/11/23 14:43:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/06 23:16:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdarg.h>
+# include <stdint.h>
+# include <limits.h>
+# include <errno.h>
 
 typedef struct s_list
 {
