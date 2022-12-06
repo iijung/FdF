@@ -6,14 +6,15 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2022/12/01 20:42:34 by minjungk         ###   ########.fr        #
+#    Updated: 2022/12/07 05:17:00 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DEFAULT_ON_ERROR:
 .DEFAULT_GOAL := all
 
-CFLAGS		= -Wall -Wextra -Werror -MMD -MP
+CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O3
+CPPFLAGS	= -I. -Iutil -Imap
 LDLIBS		= -lm
 
 CPPFLAGS	+= -I../external/minilibx
@@ -25,14 +26,23 @@ LDFLAGS		+= -L../lib/libft
 LDLIBS		+= -lft
 
 ifneq ($(shell uname), Darwin)
-	LDLIBS	+= -lXext -lX11 -lbsd
+	CPPFLAGS	+= -D__LINUX__
+	LDLIBS		+= -lXext -lX11 -lbsd
 else
-	LDFLAGS += -framework OpenGL -framework AppKit
+	LDFLAGS 	+= -framework OpenGL -framework AppKit
+endif
+
+ifdef	DEBUG
+	CPPFLAGS	+= -DDEBUG -g -O0
 endif
 
 # **************************************************************************** #
 FDF			= fdf
 FDF_SRCS	= \
+	util/ft_except.c \
+	util/ft_debug.c \
+	map/parse_file.c \
+	map/map.c \
 	fdf.c \
 
 FDF_OBJS	= $(FDF_SRCS:%.c=%.o)
@@ -40,7 +50,6 @@ FDF_DEPS	= $(FDF_SRCS:%.c=%.d)
 -include $(FDF_DEPS)
 
 $(FDF): $(FDF_OBJS)
-	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
 # **************************************************************************** #
 
 all: $(FDF)
