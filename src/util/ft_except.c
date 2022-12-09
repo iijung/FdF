@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 03:11:34 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/04 17:08:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/09 06:05:22 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	ft_except(int condition, char *file, int line, int is_exit)
 	perror(":");
 	if (is_exit)
 		exit(EXIT_FAILURE);
+	else
+		errno = 0;
 }

@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2022/12/07 05:17:00 by minjungk         ###   ########.fr        #
+#    Updated: 2022/12/09 18:13:27 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 .DEFAULT_GOAL := all
 
 CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O3
-CPPFLAGS	= -I. -Iutil -Imap
+CPPFLAGS	= -I. -Iutil -Imap -Ievent
 LDLIBS		= -lm
 
 CPPFLAGS	+= -I../external/minilibx
@@ -43,6 +43,7 @@ FDF_SRCS	= \
 	util/ft_debug.c \
 	map/parse_file.c \
 	map/map.c \
+	event/event.c \
 	fdf.c \
 
 FDF_OBJS	= $(FDF_SRCS:%.c=%.o)
