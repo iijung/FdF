@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/11 02:05:33 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/11 04:28:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	destroy_unit(void *param)
 		mlx_destroy_window(fdf->mlx, fdf->win);
 	if (fdf->img)
 		mlx_destroy_image(fdf->mlx, fdf->img);
-	if (fdf->map)
-		free(fdf->map);
+	destroy_map(fdf->map);
 	fdf->win = NULL;
 	fdf->img = NULL;
 	fdf->map = NULL;

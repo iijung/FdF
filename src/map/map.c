@@ -6,11 +6,20 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:37:43 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/05 13:53:24 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/11 05:00:27 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
+
+void			destroy_map(struct s_map *map)
+{
+	if (map == NULL)
+		return ;
+	free(map->vertices);
+	map->vertices = NULL;
+	free(map);
+}
 
 struct s_map	*import_map(char *file)
 {
@@ -22,7 +31,7 @@ struct s_map	*import_map(char *file)
 	{
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(" parsing failed.\n", 2);
-		free(map);
+		destroy_map(map);
 		return (NULL);
 	}
 	return (map);

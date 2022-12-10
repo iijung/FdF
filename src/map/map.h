@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:56:03 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/07 05:14:10 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/11 04:59:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct s_map
 	t_vertex	*vertices;
 };
 
+void			destroy_map(struct s_map *map);
 struct s_map	*import_map(char *file);
 int				parse_file(struct s_map *map, char *file);
 
