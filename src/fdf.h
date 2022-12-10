@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/09 18:06:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/11 02:02:19 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@
 enum e_status
 {
 	IDLE = 0,
-	DRAW = 1,
-	STOP = 2,
-	EXIT = 3
+	STOP = 1,
+	DRAW = 1
 };
 
 struct s_fdf
@@ -40,9 +39,8 @@ struct s_fdf
 void	create_unit(void *param);
 void	destroy_unit(void *param);
 
-int		loophook(t_list **);
+int		loophook(t_list *units);
 int		destroyhook(struct s_fdf *fdf);
-int		exposehook(struct s_fdf *fdf);
-int		mousehook(int x, int y, struct s_fdf *fdf);
 int		keyhook(int keycode, struct s_fdf *fdf);
+int		mousehook(int button, int x, int y, struct s_fdf *fdf);
 #endif
