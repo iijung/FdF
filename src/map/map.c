@@ -6,13 +6,13 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 19:37:43 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/11 05:00:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:15:44 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-void			destroy_map(struct s_map *map)
+void	destroy_map(struct s_map *map)
 {
 	if (map == NULL)
 		return ;

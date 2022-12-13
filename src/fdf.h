@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/11 02:02:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/13 22:00:39 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ enum e_status
 {
 	IDLE = 0,
 	STOP = 1,
-	DRAW = 1
+	DRAW = 2
 };
 
 struct s_fdf
