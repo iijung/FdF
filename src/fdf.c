@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/11 04:28:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:14:31 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	destroy_unit(void *param)
 	fdf->img = NULL;
 	fdf->map = NULL;
 	ft_printf("destory unit[%s]\n", fdf->file);
+	free(fdf);
 }
 
 void	create_unit(void *param)

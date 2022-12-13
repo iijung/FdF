@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/07 05:10:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/13 23:04:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,34 +66,30 @@ static int	mapsize(struct s_map *map, char *file)
 
 static void	parse_data(struct s_map *map, char *data, int col, int row)
 {
-	int				len;
 	unsigned int	color;
-	char			*tmp;
+	char			*offset;
+	const char		*hex = "0123456789ABCDEF";
 
 	map->vertices[row * map->width + col].x = col;
 	map->vertices[row * map->width + col].y = row;
 	map->vertices[row * map->width + col].z = ft_atoi(data);
 	map->vertices[row * map->width + col].color = 0x00FFFFFF;
-	tmp = ft_strnstr(data, ",0X", ft_strlen(data));
-	if (tmp == NULL)
+	data = ft_strchr(data, ',');
+	if (data == NULL)
 		return ;
-	len = 2;
 	color = 0;
-	while (tmp[++len] && color <= 0x0FFFFFFF)
+	while (++data && color <= 0x0FFFFFFF)
 	{
-		if (ft_isdigit(tmp[len]))
-			color = color * 16 + tmp[len] - '0';
-		else if (ft_strchr("ABCDEF", tmp[len]))
-			color = color * 16 + tmp[len] - 'A' + 10;
-		else
+		offset = ft_strchr(hex, ft_toupper(*data));
+		if (offset == NULL)
 			break ;
+		color = color * 16 + (hex - data);
 	}
 	map->vertices[row * map->width + col].color = color;
 }
 
 static void	parse_table(struct s_map *map, int fd, int col, int row)
 {
-	int		i;
 	char	*line;
 	char	**record;
 
@@ -104,10 +100,8 @@ static void	parse_table(struct s_map *map, int fd, int col, int row)
 		ft_except(record == NULL, __FILE__, __LINE__, 1);
 		while (record[col])
 		{
-			i = -1;
-			while (record[col][++i])
-				record[col][i] = ft_toupper(record[col][i]);
-			parse_data(map, record[col], col, row);
+			if (col < map->width)
+				parse_data(map, record[col], col, row);
 			free(record[col++]);
 		}
 		free(record);
