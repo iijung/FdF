@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/13 23:14:31 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 09:41:30 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	create_unit(void *param)
 	mlx_mouse_hook(fdf->win, mousehook, fdf);
 	mlx_hook(fdf->win, DestroyNotify, 0, destroyhook, fdf);
 	ft_printf("create unit[%s]\n", fdf->file);
+	ft_memset(&fdf->env, 0, sizeof(struct s_envinorment));
+	fdf->env.scale = 1;
+	fdf->status = DRAW;
 }
 
 int	main(int argc, char **argv)

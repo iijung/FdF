@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   theme.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/04 04:56:03 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 05:21:06 by minjungk         ###   ########.fr       */
+/*   Created: 2022/12/17 05:36:37 by minjungk          #+#    #+#             */
+/*   Updated: 2022/12/17 06:11:00 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
-# include <fcntl.h>
-# include "util.h"
+#ifndef THEME_H
+# define THEME_H
 
-typedef struct s_vertex	t_vertex;
-
-struct s_vertex
+/*
+ * foreground0 = lavender
+ * foreground1 = medium orchid
+ * foreground2 = light sky blue 
+ * background0 = royal blue
+ * background1 = midnight blude
+ */
+enum e_theme
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
-	int	tx;
-	int	ty;
-	int	tz;
+	FOREGROUND0 = 0xE0D9F6,
+	FOREGROUND1 = 0xC252E1,
+	FOREGROUND2 = 0x6ECBF5,
+	BACKGROUND0 = 0x586AE2,
+	BACKGROUND1 = 0x2A2356
 };
-
-struct s_map
-{
-	int			width;
-	int			height;
-	t_vertex	*vertices;
-};
-
-void			destroy_map(struct s_map *map);
-struct s_map	*import_map(char *file);
-int				parse_file(struct s_map *map, char *file);
 
 #endif
