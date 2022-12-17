@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 09:41:30 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 10:45:34 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ void	create_unit(void *param)
 		destroy_unit(param);
 		return ;
 	}
-	mlx_key_hook(fdf->win, keyhook, fdf);
-	mlx_mouse_hook(fdf->win, mousehook, fdf);
+	mlx_hook(fdf->win, KeyPress, KeyPressMask, keyhook, fdf);
+	mlx_hook(fdf->win, ButtonPress, ButtonPressMask, button_press, fdf);
+	mlx_hook(fdf->win, ButtonRelease, ButtonReleaseMask, button_release, fdf);
+	mlx_hook(fdf->win, MotionNotify, ButtonMotionMask, motion_notify, fdf);
 	mlx_hook(fdf->win, DestroyNotify, 0, destroyhook, fdf);
 	ft_printf("create unit[%s]\n", fdf->file);
 	ft_memset(&fdf->env, 0, sizeof(struct s_envinorment));

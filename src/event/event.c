@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 20:56:34 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 09:40:21 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 10:41:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,24 @@ int	destroyhook(struct s_fdf *fdf)
 	return (0);
 }
 
-int	mousehook(int button, int x, int y, struct s_fdf *fdf)
-{
-	(void)fdf;
-	ft_printf("mousehook [%d](%d, %d)\n", button, x, y);
-	return (0);
-}
-
 int	keyhook(int keycode, struct s_fdf *fdf)
 {
-	(void)fdf;
 	if (keycode == VK_Escape)
 		exit(EXIT_SUCCESS);
-#if 0
-	else if (keycode == VK_Left)
-		draw_rect(fdf, 0x00FF0000);
-	else if (keycode == VK_Down)
-		draw_map(fdf);
-	else if (keycode == VK_Right)
-		draw_rect(fdf, 0x000000FF);
 	else if (keycode == VK_Up)
-		mlx_clear_window(fdf->mlx, fdf->win);
+		fdf->env.rotate[0] += 15;
+	else if (keycode == VK_Down)
+		fdf->env.rotate[0] -= 15;
+	else if (keycode == VK_Left)
+		fdf->env.rotate[1] += 15;
+	else if (keycode == VK_Right)
+		fdf->env.rotate[1] -= 15;
 	else if (keycode == VK_Return)
-		draw_rect(fdf, 0);
+		ft_memset(fdf->env.rotate, 0, sizeof(fdf->env.rotate));
 	else
 		return (0);
-#endif 
-	printf("keyhook [%d]\n", keycode);
+	fdf->env.rotate[0] %= 360;
+	fdf->env.rotate[1] %= 360;
+	fdf->status = DRAW;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 09:42:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 10:45:33 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	destroy_unit(void *param);
 int		loophook(t_list *units);
 int		destroyhook(struct s_fdf *fdf);
 int		keyhook(int keycode, struct s_fdf *fdf);
-int		mousehook(int button, int x, int y, struct s_fdf *fdf);
+int		button_press(int button, int x, int y, struct s_fdf *fdf);
+int		button_release(int button, int x, int y, struct s_fdf *fdf);
+int		motion_notify(int x, int y, struct s_fdf *fdf);
 
 void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1);
 void	draw_rect(struct s_fdf *fdf, int width, int height, int color);
