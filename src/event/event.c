@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 20:56:34 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/11 03:30:41 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 09:40:21 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	loophook(t_list *units)
 		}
 		else if (fdf->status != IDLE)
 		{
-			mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
+			mlx_clear_window(fdf->mlx, fdf->win);
+			generate_image(fdf);
+			generate_guide(fdf);
+			fdf->status = IDLE;
 		}
 		units = units->next;
 	}

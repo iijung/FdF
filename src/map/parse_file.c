@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/13 23:04:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:47:39 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,22 @@ static void	parse_data(struct s_map *map, char *data, int col, int row)
 	char			*offset;
 	const char		*hex = "0123456789ABCDEF";
 
-	map->vertices[row * map->width + col].x = col;
-	map->vertices[row * map->width + col].y = row;
+	map->vertices[row * map->width + col].x = col - map->width / 2;
+	map->vertices[row * map->width + col].y = row - map->height / 2;
 	map->vertices[row * map->width + col].z = ft_atoi(data);
 	map->vertices[row * map->width + col].color = 0x00FFFFFF;
 	data = ft_strchr(data, ',');
 	if (data == NULL)
 		return ;
+	if (ft_strncmp(data + 1, "0x", 2) == 0)
+		data += 2;
 	color = 0;
-	while (++data && color <= 0x0FFFFFFF)
+	while (*++data && color <= 0x0FFFFFFF)
 	{
 		offset = ft_strchr(hex, ft_toupper(*data));
 		if (offset == NULL)
 			break ;
-		color = color * 16 + (hex - data);
+		color = color * 16 + (offset - hex);
 	}
 	map->vertices[row * map->width + col].color = color;
 }
