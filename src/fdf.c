@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/22 06:16:49 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/22 06:33:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,37 @@ void	create_unit(void *param)
 	fdf->status = DRAW;
 }
 
-int	main(int argc, char **argv)
+void	initialize_units(t_list **lst, void *mlx, int cnt, char **files)
 {
 	int				i;
-	void			*mlx;
-	t_list			*curr;
-	t_list			units;
+	t_list			*new;
+	struct s_fdf	*fdf;
 
-	units.next = NULL;
+	if (lst == NULL || mlx == NULL || files == NULL || cnt < 1)
+		ft_except(1, __FILE__, __LINE__, 1);
+	*lst = NULL;
+	i = -1;
+	while (++i < cnt)
+	{
+		new = ft_lstnew(NULL);
+		ft_except(new == NULL, __FILE__, __LINE__, 1);
+		new->content = ft_calloc(1, sizeof(struct s_fdf));
+		ft_except(new->content == NULL, __FILE__, __LINE__, 1);
+		fdf = new->content;
+		fdf->mlx = mlx;
+		fdf->file = files[i];
+		ft_lstadd_front(lst, new);
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	void	*mlx;
+	t_list	units;
+
 	mlx = mlx_init();
 	ft_except(mlx == NULL, __FILE__, __LINE__, 1);
-	i = 0;
-	while (++i < argc)
-	{
-		curr = ft_lstnew(NULL);
-		ft_except(curr == NULL, __FILE__, __LINE__, 1);
-		curr->content = ft_calloc(1, sizeof(struct s_fdf));
-		ft_except(curr->content == NULL, __FILE__, __LINE__, 1);
-		((struct s_fdf *)curr->content)->mlx = mlx;
-		((struct s_fdf *)curr->content)->file = argv[i];
-		ft_lstadd_front(&units.next, curr);
-	}
+	initialize_units(&units.next, mlx, argc - 1, argv + 1);
 	ft_lstiter(units.next, create_unit);
 	mlx_loop_hook(mlx, loophook, &units);
 	mlx_loop(mlx);
