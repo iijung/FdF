@@ -6,37 +6,45 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 20:56:34 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 10:41:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/22 06:05:40 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void	loop(struct s_fdf *fdf)
+{
+	if (fdf == NULL)
+		return ;
+	mlx_clear_window(fdf->mlx, fdf->win);
+	generate_image(fdf);
+	generate_guide(fdf);
+	fdf->status = IDLE;
+}
+
 int	loophook(t_list *units)
 {
-	int				cnt;
+	t_list			*curr;
+	t_list			*next;
 	struct s_fdf	*fdf;
 
-	cnt = ft_lstsize(units);
-	while (units)
+	curr = units;
+	while (curr && curr->next)
 	{
-		fdf = units->content;
+		next = curr->next;
+		fdf = next->content;
 		if (fdf == NULL || fdf->status == STOP)
 		{
-			destroy_unit(units->content);
-			units->content = NULL;
-			--cnt;
+			next = next->next;
+			ft_lstdelone(curr->next, destroy_unit);
+			curr->next = next;
+			continue ;
 		}
 		else if (fdf->status != IDLE)
-		{
-			mlx_clear_window(fdf->mlx, fdf->win);
-			generate_image(fdf);
-			generate_guide(fdf);
-			fdf->status = IDLE;
-		}
-		units = units->next;
+			loop(fdf);
+		curr = next;
 	}
-	if (cnt == 0)
+	if (units->next == NULL)
 		exit(EXIT_SUCCESS);
 	return (0);
 }

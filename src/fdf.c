@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 10:45:34 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/22 06:16:49 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ void	create_unit(void *param)
 	if (param == NULL)
 		return ;
 	fdf = param;
+	ft_printf("create unit[%s]\n", fdf->file);
 	fdf->win = mlx_new_window(fdf->mlx, WINDOW_X, WINDOW_Y, fdf->file);
 	fdf->img = mlx_new_image(fdf->mlx, WINDOW_X, WINDOW_Y);
 	fdf->map = import_map(fdf->file);
 	if (fdf->win == NULL || fdf->img == NULL || fdf->map == NULL)
 	{
-		destroy_unit(param);
+		fdf->status = STOP;
 		return ;
 	}
 	mlx_hook(fdf->win, KeyPress, KeyPressMask, keyhook, fdf);
@@ -51,7 +52,6 @@ void	create_unit(void *param)
 	mlx_hook(fdf->win, ButtonRelease, ButtonReleaseMask, button_release, fdf);
 	mlx_hook(fdf->win, MotionNotify, ButtonMotionMask, motion_notify, fdf);
 	mlx_hook(fdf->win, DestroyNotify, 0, destroyhook, fdf);
-	ft_printf("create unit[%s]\n", fdf->file);
 	ft_memset(&fdf->env, 0, sizeof(struct s_envinorment));
 	fdf->env.scale = 1;
 	fdf->status = DRAW;
@@ -62,9 +62,9 @@ int	main(int argc, char **argv)
 	int				i;
 	void			*mlx;
 	t_list			*curr;
-	t_list			*units;
+	t_list			units;
 
-	units = NULL;
+	units.next = NULL;
 	mlx = mlx_init();
 	ft_except(mlx == NULL, __FILE__, __LINE__, 1);
 	i = 0;
@@ -76,10 +76,10 @@ int	main(int argc, char **argv)
 		ft_except(curr->content == NULL, __FILE__, __LINE__, 1);
 		((struct s_fdf *)curr->content)->mlx = mlx;
 		((struct s_fdf *)curr->content)->file = argv[i];
-		ft_lstadd_front(&units, curr);
+		ft_lstadd_front(&units.next, curr);
 	}
-	ft_lstiter(units, create_unit);
-	mlx_loop_hook(mlx, loophook, units);
+	ft_lstiter(units.next, create_unit);
+	mlx_loop_hook(mlx, loophook, &units);
 	mlx_loop(mlx);
 	exit(EXIT_SUCCESS);
 }
