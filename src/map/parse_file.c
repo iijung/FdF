@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/13 23:04:58 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:00:23 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,15 @@ static void	parse_data(struct s_map *map, char *data, int col, int row)
 	data = ft_strchr(data, ',');
 	if (data == NULL)
 		return ;
+	if (ft_strncmp(data + 1, "0x", 2) == 0)
+		data += 2;
 	color = 0;
-	while (++data && color <= 0x0FFFFFFF)
+	while (*++data && color <= 0x0FFFFFFF)
 	{
 		offset = ft_strchr(hex, ft_toupper(*data));
 		if (offset == NULL)
 			break ;
-		color = color * 16 + (hex - data);
+		color = color * 16 + (offset - hex);
 	}
 	map->vertices[row * map->width + col].color = color;
 }
