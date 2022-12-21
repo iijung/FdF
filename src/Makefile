@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2022/12/09 18:13:27 by minjungk         ###   ########.fr        #
+#    Updated: 2022/12/17 10:45:06 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,10 @@ FDF_SRCS	= \
 	map/parse_file.c \
 	map/map.c \
 	event/event.c \
+	event/mouse_hook.c \
+	draw/draw.c \
+	draw/image.c \
+	draw/guide.c \
 	fdf.c \
 
 FDF_OBJS	= $(FDF_SRCS:%.c=%.o)
