@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/22 06:33:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/24 04:05:51 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ void	create_unit(void *param)
 	ft_printf("create unit[%s]\n", fdf->file);
 	fdf->win = mlx_new_window(fdf->mlx, WINDOW_X, WINDOW_Y, fdf->file);
 	fdf->img = mlx_new_image(fdf->mlx, WINDOW_X, WINDOW_Y);
-	fdf->map = import_map(fdf->file);
-	if (fdf->win == NULL || fdf->img == NULL || fdf->map == NULL)
+	if (fdf->win == NULL || fdf->img == NULL)
 	{
 		fdf->status = STOP;
 		return ;
@@ -76,7 +75,9 @@ void	initialize_units(t_list **lst, void *mlx, int cnt, char **files)
 		fdf = new->content;
 		fdf->mlx = mlx;
 		fdf->file = files[i];
-		ft_lstadd_front(lst, new);
+		fdf->map = import_map(fdf->file);
+		if (fdf->map)
+			ft_lstadd_front(lst, new);
 	}
 }
 
