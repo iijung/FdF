@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 03:47:39 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/28 08:12:54 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	mapsize(struct s_map *map, char *file)
 		i = -1;
 		col = 0;
 		while (row[++i])
-			col += row[i] == ' ';
+			col += row[i] == ' ' || row[i] == '\n';
 		free(row);
 		if (map->width < col)
 			map->width = col;
