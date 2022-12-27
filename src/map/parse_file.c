@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/28 08:12:54 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/28 08:35:20 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,28 @@ static void	debug(void *param)
 
 static int	mapsize(struct s_map *map, char *file)
 {
-	int		i;
-	int		col;
-	char	*row;
 	int		fd;
+	int		col;
+	char	*line;
+	char	**record;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	row = get_next_line(fd);
-	while (row)
+	line = get_next_line(fd);
+	while (line)
 	{
-		i = -1;
-		col = 0;
-		while (row[++i])
-			col += row[i] == ' ' || row[i] == '\n';
-		free(row);
+		record = ft_split(line, ' ');
+		free(line);
+		ft_except(record == NULL, __FILE__, __LINE__, 1);
+		col = -1;
+		while (record[++col])
+			free(record[col]);
+		free(record);
 		if (map->width < col)
 			map->width = col;
 		map->height++;
-		row = get_next_line(fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
