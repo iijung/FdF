@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:11:51 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 09:10:24 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:15:01 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_pixel(struct s_fdf *fdf, int x, int y, int color)
 	int		bpp;
 	int		endian;
 
-	if (x < 0 || y < 0 || x > WINDOW_X || y > WINDOW_Y)
+	if (x < 0 || y < 0 || x >= WINDOW_X || y >= WINDOW_Y)
 		return ;
 	color = mlx_get_color_value(fdf->mlx, color);
 	addr = mlx_get_data_addr(fdf->img, &bpp, &size_line, &endian);
