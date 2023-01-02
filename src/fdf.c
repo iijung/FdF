@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/24 04:05:51 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:50:17 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	initialize_units(t_list **lst, void *mlx, int cnt, char **files)
 	t_list			*new;
 	struct s_fdf	*fdf;
 
+	if (cnt < 1)
+		errno = EINVAL;
 	if (lst == NULL || mlx == NULL || files == NULL || cnt < 1)
 		ft_except(1, __FILE__, __LINE__, 1);
 	*lst = NULL;
