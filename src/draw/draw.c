@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:11:51 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/28 11:15:01 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:46:04 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,51 +28,28 @@ void	set_pixel(struct s_fdf *fdf, int x, int y, int color)
 
 void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1)
 {
-	float	x;
-	float	y;
-	float	dx;
-	float	dy;
-	int		step;
-	int		color;
+	int	val[8];
 
-	dx = v1->tx - v0->tx;
-	dy = v1->ty - v0->ty;
-	if (abs((int)dx) > abs((int)dy))
-		step = abs((int)dx);
-	else
-		step = abs((int)dy);
-	dx /= step;
-	dy /= step;
-	x = v0->tx;
-	y = v0->ty;
-	color = v0->color;
-	float r = (((v1->color >> 16) & 0xFF) - ((v0->color >> 16) & 0xFF));
-	float g = (((v1->color >> 8) & 0xFF) - ((v0->color >> 8) & 0xFF));
-	float b = (v1->color & 0xFF) - (v0->color & 0xFF);
-	if (step)
+	enum e_type {dx, dy, sx, sy, e, e2, x, y};
+	val[dx] = abs(v1->tx - v0->tx);
+	val[dy] = abs(v1->ty - v0->ty);
+	val[sx] = 2 * (v0->tx < v1->tx) - 1;
+	val[sy] = 2 * (v0->ty < v1->ty) - 1;
+	val[e] = val[dx] / 2;
+	if (val[dx] <= val[dy])
+		val[e] = -val[dy] / 2;
+	val[x] = v0->tx;
+	val[y] = v0->ty;
+	while (!(val[x] == v1->tx && val[y] == v1->ty))
 	{
-		r /= step;
-		g /= step;
-		b /= step;
+		set_pixel(fdf, val[x], val[y], v0->color);
+		val[e2] = val[e];
+		val[e] -= val[dy] * (val[e2] > -val[dx]);
+		val[x] += val[sx] * (val[e2] > -val[dx]);
+		val[e] += val[dx] * (val[e2] < val[dy]);
+		val[y] += val[sy] * (val[e2] < val[dy]);
 	}
-	float e[3] = {0, 0, 0};
-	set_pixel(fdf, x, y, color);
-	while (step--)
-	{
-		x += dx;
-		y += dy;
-		{
-			color = v0->color;
-			e[0] += r;
-			e[1] += g;
-			e[2] += b;
-			color += 0x00010000 * (int)e[0];
-			color += 0x00000100 * (int)e[1];
-			color += 0x00000001 * (int)e[2];
-			color = mlx_get_color_value(fdf->mlx, color);
-		}
-		set_pixel(fdf, x, y, color);
-	}
+	set_pixel(fdf, val[x], val[y], v0->color);
 }
 
 void	draw_rect(struct s_fdf *fdf, int width, int height, int color)
