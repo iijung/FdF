@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:39:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 20:16:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 22:25:26 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	motion_notify(int x, int y, struct s_fdf *fdf)
 	if (fdf->mouse[0] == 2)
 	{
 		fdf->rotate[2] += fdf->mouse[2] - y;
-		fdf->rotate[2] %= 360;
+		fdf->rotate[2] = (fdf->rotate[2] + 360) % 360;
 	}
 	if (fdf->mouse[0] == 3)
 	{
 		fdf->rotate[0] += fdf->mouse[2] - y;
-		fdf->rotate[0] %= 360;
+		fdf->rotate[0] = (fdf->rotate[0] + 360) % 360;
 		fdf->rotate[1] += fdf->mouse[1] - x;
-		fdf->rotate[1] %= 360;
+		fdf->rotate[1] = (fdf->rotate[1] + 360) % 360;
 	}
 	fdf->mouse[1] = x;
 	fdf->mouse[2] = y;

@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 22:20:41 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 22:26:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_unit(void *param)
 	}
 	fdf->scale = 5;
 	fdf->rotate[0] = 45;
-	fdf->rotate[1] = -35;
+	fdf->rotate[1] = 325;
 	fdf->rotate[2] = 30;
 	fdf->status = DRAW;
 	inithook(fdf);
