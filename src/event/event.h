@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/09 04:49:57 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/09 00:59:28 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ enum e_event
 enum e_virtual_keycode
 {
 	VK_Return = 0x0024,
+	VK_Tab = 0x0030,
 	VK_Escape = 0x0035,
 	VK_Left = 0x007B,
 	VK_Up = 0x007E,
@@ -108,6 +109,7 @@ enum e_virtual_keycode
 enum e_keycode
 {
 	VK_Return = 0xFF0D,
+	VK_Tab = 0xFF09,
 	VK_Escape = 0xFF1B,
 	VK_Left = 0xFF51,
 	VK_Up = 0xFF52,

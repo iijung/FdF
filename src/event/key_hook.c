@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:39:10 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 22:24:43 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/09 00:59:35 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	key_press(int keycode, struct s_fdf *fdf)
 {
 	if (keycode == VK_Escape)
 		exit(EXIT_SUCCESS);
+	else if (keycode == VK_Tab)
+	{
+		fdf->status = STOP;
+		return (0);
+	}
 	else if (keycode == VK_Up)
 		fdf->rotate[0] += 15;
 	else if (keycode == VK_Down)
