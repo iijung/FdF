@@ -6,12 +6,11 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 07:37:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 20:16:19 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/09 01:08:58 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "theme.h"
 
 static t_vertex	*get_vertex(struct s_map *map, int col, int row)
 {

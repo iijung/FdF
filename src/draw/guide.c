@@ -6,12 +6,27 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:25:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 20:16:27 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/09 01:08:50 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "theme.h"
+
+/*
+ * foreground0 = lavender
+ * foreground1 = medium orchid
+ * foreground2 = light sky blue 
+ * background0 = royal blue
+ * background1 = midnight blude
+ */
+enum e_theme
+{
+	FOREGROUND0 = 0xE0D9F6,
+	FOREGROUND1 = 0xC252E1,
+	FOREGROUND2 = 0x6ECBF5,
+	BACKGROUND0 = 0x586AE2,
+	BACKGROUND1 = 0x2A2356
+};
 
 static void	mapinfo(struct s_fdf *fdf)
 {
