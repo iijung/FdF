@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:11:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/04 12:46:04 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:27:39 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,17 @@ void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1)
 	val[dy] = abs(v1->ty - v0->ty);
 	val[sx] = 2 * (v0->tx < v1->tx) - 1;
 	val[sy] = 2 * (v0->ty < v1->ty) - 1;
-	val[e] = val[dx] / 2;
-	if (val[dx] <= val[dy])
-		val[e] = -val[dy] / 2;
+	val[e] = val[dx] - val[dy];
 	val[x] = v0->tx;
 	val[y] = v0->ty;
 	while (!(val[x] == v1->tx && val[y] == v1->ty))
 	{
 		set_pixel(fdf, val[x], val[y], v0->color);
-		val[e2] = val[e];
-		val[e] -= val[dy] * (val[e2] > -val[dx]);
-		val[x] += val[sx] * (val[e2] > -val[dx]);
-		val[e] += val[dx] * (val[e2] < val[dy]);
-		val[y] += val[sy] * (val[e2] < val[dy]);
+		val[e2] = 2 * val[e];
+		val[e] -= val[dy] * (val[e2] > -val[dy]);
+		val[x] += val[sx] * (val[e2] > -val[dy]);
+		val[e] += val[dx] * (val[e2] < val[dx]);
+		val[y] += val[sy] * (val[e2] < val[dx]);
 	}
 	set_pixel(fdf, val[x], val[y], v0->color);
 }
