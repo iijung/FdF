@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/02 12:50:17 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:41:49 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,10 @@ void	create_unit(void *param)
 		fdf->status = STOP;
 		return ;
 	}
-	mlx_hook(fdf->win, KeyPress, KeyPressMask, keyhook, fdf);
-	mlx_hook(fdf->win, ButtonPress, ButtonPressMask, button_press, fdf);
-	mlx_hook(fdf->win, ButtonRelease, ButtonReleaseMask, button_release, fdf);
-	mlx_hook(fdf->win, MotionNotify, ButtonMotionMask, motion_notify, fdf);
-	mlx_hook(fdf->win, DestroyNotify, 0, destroyhook, fdf);
 	ft_memset(&fdf->env, 0, sizeof(struct s_envinorment));
 	fdf->env.scale = 1;
 	fdf->status = DRAW;
+	inithook(fdf);
 }
 
 void	initialize_units(t_list **lst, void *mlx, int cnt, char **files)

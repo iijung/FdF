@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 20:56:34 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/22 06:05:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:44:37 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ int	loophook(t_list *units)
 	return (0);
 }
 
+int	key_press(int keycode, struct s_fdf *fdf);
+int	button_press(int button, int x, int y, struct s_fdf *fdf);
+int	button_release(int button, int x, int y, struct s_fdf *fdf);
+int	motion_notify(int x, int y, struct s_fdf *fdf);
+
 int	destroyhook(struct s_fdf *fdf)
 {
 	if (fdf == NULL)
@@ -57,24 +62,11 @@ int	destroyhook(struct s_fdf *fdf)
 	return (0);
 }
 
-int	keyhook(int keycode, struct s_fdf *fdf)
+void	inithook(struct s_fdf *fdf)
 {
-	if (keycode == VK_Escape)
-		exit(EXIT_SUCCESS);
-	else if (keycode == VK_Up)
-		fdf->env.rotate[0] += 15;
-	else if (keycode == VK_Down)
-		fdf->env.rotate[0] -= 15;
-	else if (keycode == VK_Left)
-		fdf->env.rotate[1] += 15;
-	else if (keycode == VK_Right)
-		fdf->env.rotate[1] -= 15;
-	else if (keycode == VK_Return)
-		ft_memset(fdf->env.rotate, 0, sizeof(fdf->env.rotate));
-	else
-		return (0);
-	fdf->env.rotate[0] %= 360;
-	fdf->env.rotate[1] %= 360;
-	fdf->status = DRAW;
-	return (0);
+	mlx_hook(fdf->win, KeyPress, KeyPressMask, key_press, fdf);
+	mlx_hook(fdf->win, ButtonPress, ButtonPressMask, button_press, fdf);
+	mlx_hook(fdf->win, ButtonRelease, ButtonReleaseMask, button_release, fdf);
+	mlx_hook(fdf->win, MotionNotify, ButtonMotionMask, motion_notify, fdf);
+	mlx_hook(fdf->win, DestroyNotify, 0, destroyhook, fdf);
 }
