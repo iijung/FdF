@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 07:37:51 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 09:08:29 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:37:38 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	transform(struct s_fdf *fdf, t_vertex *v)
 {
 	double	cos0;
 	double	sin0;
-	int		prev;
+	double	prev;
 
 	cos0 = cos(M_PI * fdf->env.rotate[0] / 180);
 	sin0 = sin(M_PI * fdf->env.rotate[0] / 180);

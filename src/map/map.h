@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:56:03 by minjungk          #+#    #+#             */
-/*   Updated: 2022/12/17 05:21:06 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:08:51 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ typedef struct s_vertex	t_vertex;
 
 struct s_vertex
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
-	int	tx;
-	int	ty;
-	int	tz;
+	double	x;
+	double	y;
+	double	z;
+	int		color;
+	double	tx;
+	double	ty;
+	double	tz;
 };
 
 struct s_map
