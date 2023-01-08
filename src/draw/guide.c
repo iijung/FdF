@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 05:25:35 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/04 13:04:37 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:16:27 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void	setinfo(struct s_fdf *fdf)
 
 	mlx_string_put(fdf->mlx, fdf->win, 10, 100, FOREGROUND1, "# settings");
 	mlx_string_put(fdf->mlx, fdf->win, 20, 120, FOREGROUND0, "scale : ");
-	str = ft_itoa(fdf->env.scale);
+	str = ft_itoa(fdf->scale);
 	mlx_string_put(fdf->mlx, fdf->win, 140, 120, FOREGROUND2, str);
 	free(str);
 	mlx_string_put(fdf->mlx, fdf->win, 20, 140, FOREGROUND0, "rorate x : ");
-	str = ft_itoa(fdf->env.rotate[0]);
+	str = ft_itoa(fdf->rotate[0]);
 	mlx_string_put(fdf->mlx, fdf->win, 140, 140, FOREGROUND2, str);
 	free(str);
 	mlx_string_put(fdf->mlx, fdf->win, 20, 160, FOREGROUND0, "rorate y : ");
-	str = ft_itoa(fdf->env.rotate[1]);
+	str = ft_itoa(fdf->rotate[1]);
 	mlx_string_put(fdf->mlx, fdf->win, 140, 160, FOREGROUND2, str);
 	free(str);
 	mlx_string_put(fdf->mlx, fdf->win, 20, 180, FOREGROUND0, "rorate z : ");
-	str = ft_itoa(fdf->env.rotate[2]);
+	str = ft_itoa(fdf->rotate[2]);
 	mlx_string_put(fdf->mlx, fdf->win, 140, 180, FOREGROUND2, str);
 	free(str);
 }

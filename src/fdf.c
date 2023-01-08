@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 18:41:49 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:15:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	create_unit(void *param)
 		fdf->status = STOP;
 		return ;
 	}
-	ft_memset(&fdf->env, 0, sizeof(struct s_envinorment));
-	fdf->env.scale = 1;
+	fdf->scale = 1;
 	fdf->status = DRAW;
 	inithook(fdf);
 }

@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 18:44:06 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:14:42 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ enum e_status
 	DRAW = 2
 };
 
-struct s_envinorment
-{
-	int	scale;
-	int	rotate[3];
-	int	translation[3];
-	int	mouse[3];
-};
-
 struct s_fdf
 {
 	int						status;
@@ -44,7 +36,13 @@ struct s_fdf
 	void					*win;
 	void					*img;
 	struct s_map			*map;
-	struct s_envinorment	env;
+	struct
+	{
+		int	scale;
+		int	rotate[3];
+		int	translation[3];
+		int	mouse[3];
+	};
 };
 
 void	create_unit(void *param);
