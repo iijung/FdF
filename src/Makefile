@@ -6,14 +6,14 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2023/01/08 18:40:09 by minjungk         ###   ########.fr        #
+#    Updated: 2023/01/09 02:06:18 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DEFAULT_ON_ERROR:
 .DEFAULT_GOAL := all
 
-CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O3
+CFLAGS		= -Wall -Wextra -Werror -MMD -MP -O3 -ffast-math
 CPPFLAGS	= -I. -Iutil -Imap -Ievent
 LDLIBS		= -lm
 

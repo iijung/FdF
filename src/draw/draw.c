@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:11:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 15:46:47 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/09 02:13:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,30 @@ void	set_pixel(struct s_fdf *fdf, int x, int y, int color)
 
 void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1)
 {
-	int	val[10];
+	int	v[10];
 
 	enum e_type {dx, dy, sx, sy, e, e2, x0, y0, x1, y1};
-	val[x0] = round(v0->cur.x);
-	val[y0] = round(v0->cur.y);
-	val[x1] = round(v1->cur.x);
-	val[y1] = round(v1->cur.y);
-	val[dx] = abs(val[x1] - val[x0]);
-	val[dy] = abs(val[y1] - val[y0]);
-	val[sx] = 2 * (val[x0] < val[x1]) - 1;
-	val[sy] = 2 * (val[y0] < val[y1]) - 1;
-	val[e] = val[dx] - val[dy];
-	while (!(val[x0] == val[x1] && val[y0] == val[y1]))
+	v[x0] = round(v0->cur.x);
+	v[y0] = round(v0->cur.y);
+	v[x1] = round(v1->cur.x);
+	v[y1] = round(v1->cur.y);
+	v[dx] = abs(v[x1] - v[x0]);
+	v[dy] = abs(v[y1] - v[y0]);
+	v[sx] = 2 * (v[x0] < v[x1]) - 1;
+	v[sy] = 2 * (v[y0] < v[y1]) - 1;
+	v[e] = v[dx] - v[dy];
+	while (!(v[x0] == v[x1] && v[y0] == v[y1]))
 	{
-		set_pixel(fdf, val[x0], val[y0], v0->color.c);
-		val[e2] = 2 * val[e];
-		val[e] -= val[dy] * (val[e2] > -val[dy]);
-		val[x0] += val[sx] * (val[e2] > -val[dy]);
-		val[e] += val[dx] * (val[e2] < val[dx]);
-		val[y0] += val[sy] * (val[e2] < val[dx]);
+		if (abs(v[x0]) >= WINDOW_X || abs(v[y0]) >= WINDOW_Y)
+			break ;
+		set_pixel(fdf, v[x0], v[y0], v0->color.c);
+		v[e2] = 2 * v[e];
+		v[e] -= v[dy] * (v[e2] > -v[dy]);
+		v[x0] += v[sx] * (v[e2] > -v[dy]);
+		v[e] += v[dx] * (v[e2] < v[dx]);
+		v[y0] += v[sy] * (v[e2] < v[dx]);
 	}
-	set_pixel(fdf, val[x0], val[y0], v0->color.c);
+	set_pixel(fdf, v[x0], v[y0], v0->color.c);
 }
 
 void	draw_rect(struct s_fdf *fdf, int width, int height, int color)
