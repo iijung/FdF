@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:11:51 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 14:36:48 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:46:47 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1)
 	int	val[10];
 
 	enum e_type {dx, dy, sx, sy, e, e2, x0, y0, x1, y1};
-	val[x0] = round(v0->tx);
-	val[y0] = round(v0->ty);
-	val[x1] = round(v1->tx);
-	val[y1] = round(v1->ty);
+	val[x0] = round(v0->cur.x);
+	val[y0] = round(v0->cur.y);
+	val[x1] = round(v1->cur.x);
+	val[y1] = round(v1->cur.y);
 	val[dx] = abs(val[x1] - val[x0]);
 	val[dy] = abs(val[y1] - val[y0]);
 	val[sx] = 2 * (val[x0] < val[x1]) - 1;
@@ -42,14 +42,14 @@ void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1)
 	val[e] = val[dx] - val[dy];
 	while (!(val[x0] == val[x1] && val[y0] == val[y1]))
 	{
-		set_pixel(fdf, val[x0], val[y0], v0->color);
+		set_pixel(fdf, val[x0], val[y0], v0->color.c);
 		val[e2] = 2 * val[e];
 		val[e] -= val[dy] * (val[e2] > -val[dy]);
 		val[x0] += val[sx] * (val[e2] > -val[dy]);
 		val[e] += val[dx] * (val[e2] < val[dx]);
 		val[y0] += val[sy] * (val[e2] < val[dx]);
 	}
-	set_pixel(fdf, val[x0], val[y0], v0->color);
+	set_pixel(fdf, val[x0], val[y0], v0->color.c);
 }
 
 void	draw_rect(struct s_fdf *fdf, int width, int height, int color)
