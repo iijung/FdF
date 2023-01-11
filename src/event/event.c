@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 20:56:34 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 18:44:37 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:07:41 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	loop(struct s_fdf *fdf)
 {
 	if (fdf == NULL)
 		return ;
-	mlx_clear_window(fdf->mlx, fdf->win);
 	generate_image(fdf);
 	generate_guide(fdf);
 	fdf->status = IDLE;
