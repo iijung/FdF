@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 15:26:44 by minjungk          #+#    #+#              #
-#    Updated: 2023/01/09 02:17:59 by minjungk         ###   ########.fr        #
+#    Updated: 2023/01/11 18:30:29 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,12 @@ FDF_OBJS	= $(FDF_SRCS:%.c=%.o)
 FDF_DEPS	= $(FDF_SRCS:%.c=%.d)
 -include $(FDF_DEPS)
 
-$(FDF): $(FDF_OBJS)
+../$(FDF):
+	ln -sf $(CURDIR)/$(FDF) ../$(FDF)
+
+$(FDF): $(FDF_OBJS) | ../$(FDF)
+	$(LINK.o) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
 # **************************************************************************** #
 
 all: $(FDF)
@@ -66,6 +71,7 @@ clean:
 	$(RM) $(FDF_OBJS) $(FDF_DEPS)
 
 fclean: clean
+	$(RM) ../$(FDF)
 	$(RM) $(FDF)
 
 re: clean
