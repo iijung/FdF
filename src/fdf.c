@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2023/12/04 07:47:40 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/01/08 22:26:09 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,4 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(mlx, loophook, &units);
 	mlx_loop(mlx);
 	exit(EXIT_SUCCESS);
-
 }
