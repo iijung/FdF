@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:17:11 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 20:14:42 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/12/04 07:29:34 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	drawline(struct s_fdf *fdf, t_vertex *v0, t_vertex *v1);
 void	draw_rect(struct s_fdf *fdf, int width, int height, int color);
 void	generate_guide(struct s_fdf *fdf);
 void	generate_image(struct s_fdf *fdf);
+
 #endif
