@@ -12,4 +12,4 @@ jobs:
           sudo python3 -m pip install --upgrade pip setuptools
           sudo python3 -m pip install norminette
       - name: check
-        run: norminette -R CheckForbiddenSourceHeader
+        run: norminette -R CheckForbiddenSourceHeader src
