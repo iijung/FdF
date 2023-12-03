@@ -6,11 +6,11 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:09:11 by minjungk          #+#    #+#              #
-#    Updated: 2022/12/15 23:13:47 by minjungk         ###   ########.fr        #
+#    Updated: 2023/12/04 07:02:00 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_ON_ERROR:
+.DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
 re:
