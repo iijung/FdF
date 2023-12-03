@@ -1,0 +1,15 @@
+name: norm
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: norm
+        run: | 
+          sudo python3 -m pip install --upgrade pip setuptools
+          sudo python3 -m pip install norminette
+      - name: check
+        run: norminette -R CheckForbiddenSourceHeader
