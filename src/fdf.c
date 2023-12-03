@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 23:13:04 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 22:26:09 by minjungk         ###   ########.fr       */
+/*   Updated: 2023/12/04 07:58:29 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	destroy_unit(void *param)
 	fdf->win = NULL;
 	fdf->img = NULL;
 	fdf->map = NULL;
-	ft_printf("destory unit[%s]\n", fdf->file);
+	ft_printf("destroy unit[%s]\n", fdf->file);
 	free(fdf);
 }
 
@@ -92,5 +92,6 @@ int	main(int argc, char **argv)
 	ft_lstiter(units.next, create_unit);
 	mlx_loop_hook(mlx, loophook, &units);
 	mlx_loop(mlx);
+	ft_lstiter(units.next, destroy_unit);
 	exit(EXIT_SUCCESS);
 }
