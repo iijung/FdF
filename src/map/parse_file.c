@@ -6,7 +6,7 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 00:45:55 by minjungk          #+#    #+#             */
-/*   Updated: 2023/01/08 15:44:26 by minjungk         ###   ########.fr       */
+/*   Updated: 2024/08/18 06:53:03 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	debug(void *param)
 				map->vertices[y * map->width + x].org.z,
 				map->vertices[y * map->width + x].color);
 		}
-		write(1, "\n", 1);
+		ft_putchar_fd('\n', STDOUT_FILENO);
 	}
 	ft_printf("\nwidth = %d, height = %d\n", map->width, map->height);
 }
