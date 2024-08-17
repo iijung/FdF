@@ -6,11 +6,11 @@
 /*   By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 05:46:00 by minjungk          #+#    #+#             */
-/*   Updated: 2022/11/23 14:41:44 by minjungk         ###   ########.fr       */
+/*   Updated: 2022/08/21 21:55:52 by minjungk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 static char	*join(char *dst, char *src, size_t slen, int *err)
 {
