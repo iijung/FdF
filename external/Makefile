@@ -6,7 +6,7 @@
 #    By: minjungk <minjungk@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 13:09:11 by minjungk          #+#    #+#              #
-#    Updated: 2023/12/04 07:02:00 by minjungk         ###   ########.fr        #
+#    Updated: 2024/08/18 05:36:40 by minjungk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ clean fclean:
 LIBMLX_DIR	=	minilibx
 
 $(LIBMLX_DIR):
+	git submodule update --init --recursive
 	@if [ $(shell uname) = "Darwin" ]; then \
 		ln -sf $(LIBMLX_DIR)-macos $(LIBMLX_DIR); \
 	else \
